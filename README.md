@@ -9,4 +9,4 @@ A simple PoS unit for retrofitting any device to accept bitcoin over lightning n
 
 Just flash the code, press A on the M5Stack, and connect to the WiFi captive portal SSID: 121 PASS: password1
 
-<img style="width:300px" src="https://i.imgur.com/Er9TGmY.png">
+<img width="300" src="https://i.imgur.com/Er9TGmY.png">
