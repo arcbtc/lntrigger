@@ -62,10 +62,18 @@ void loop() {
   getinvoice();
   delay(5000);
   }
-  while(paid == false){
+  if(payReq != ""){
+   qrdisplay_screen();
+   delay(5000);
+  }
+  while(paid == false && payReq != ""){
     checkinvoice();
     delay(3000);
   }
+  payReq = "";
+  dataId = "";
+  paid = false;
+  delay(4000);
 }
 
 
@@ -111,33 +119,39 @@ void getinvoice() {
     return;   
   }
 
-  String topost = "{  \"value\" : \"" + String(lnbitsamount) +"\", \"memo\" :\""+ String(lnbitsdescription) + String(random(1,1000)) + "\"}";
-  String url = "/api/v1/invoices";
+  String topost = "{\"out\": false,\"amount\" : " + String(lnbitsamount) + ", \"memo\" :\""+ String(lnbitsdescription) + String(random(1,1000)) + "\"}";
+  String url = "/api/v1/payments";
   client.print(String("POST ") + url +" HTTP/1.1\r\n" +
                 "Host: " + lnbitsserver + "\r\n" +
                 "User-Agent: ESP32\r\n" +
-                "Grpc-Metadata-macaroon:"+ invoicekey +"\r\n" +
+                "X-Api-Key: "+ invoicekey +" \r\n" +
                 "Content-Type: application/json\r\n" +
                 "Connection: close\r\n" +
                 "Content-Length: " + topost.length() + "\r\n" +
                 "\r\n" + 
                 topost + "\n");
-
   while (client.connected()) {
     String line = client.readStringUntil('\n');
-   Serial.println(line);
+    if (line == "\r") {
+      break;
+    }
     if (line == "\r") {
       break;
     }
   }
+  
   String line = client.readString();
-  Serial.println(line);
-  const size_t capacity = JSON_OBJECT_SIZE(2) + 430;
-  DynamicJsonDocument doc(capacity);
-  deserializeJson(doc, line);
-  const char* payreq = doc["pay_req"]; 
-  const char* payment_hash = doc["payment_hash"]; 
-  payReq = payreq;
+
+  StaticJsonDocument<1000> doc;
+  DeserializationError error = deserializeJson(doc, line);
+  if (error) {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+  const char* payment_hash = doc["checking_id"];
+  const char* payment_request = doc["payment_request"];
+  payReq = payment_request;
   dataId = payment_hash;
 }
 
@@ -155,26 +169,32 @@ void checkinvoice(){
     return;   
   }
 
-  String url = "/api/v1/invoice/";
+  String url = "/api/v1/payments/";
   client.print(String("GET ") + url + dataId +" HTTP/1.1\r\n" +
                 "Host: " + lnbitsserver + "\r\n" +
                 "User-Agent: ESP32\r\n" +
-                "Grpc-Metadata-macaroon:"+ invoicekey +"\r\n" +
+                "X-Api-Key:"+ invoicekey +"\r\n" +
                 "Content-Type: application/json\r\n" +
                 "Connection: close\r\n\r\n");
    while (client.connected()) {
-    String line = client.readStringUntil('\n');
-   Serial.println(line);
+   String line = client.readStringUntil('\n');
+    if (line == "\r") {
+      break;
+    }
     if (line == "\r") {
       break;
     }
   }
   String line = client.readString();
   Serial.println(line);
-  const size_t capacity = JSON_OBJECT_SIZE(1) + 100;
-  DynamicJsonDocument doc(capacity);
-  deserializeJson(doc, line);
-  const char* charPaid = doc["PAID"];
+  StaticJsonDocument<200> doc;
+  DeserializationError error = deserializeJson(doc, line);
+  if (error) {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+  bool charPaid = doc["paid"];
   paid = charPaid;
 }
 
