@@ -26,7 +26,7 @@ Upload code!
 
 Press A on the M5Stack during "POWERED BY LNBITS" screen, and connect to the WiFi captive portal SSID: "⚡lntrigger⚡" PASS: "password1"
 <p align="center">
-<img width="300" src="https://i.imgur.com/Adgj0Wi.pngg">
+<img src="https://i.imgur.com/Adgj0Wi.pngg">
 </p>
 Enter your LNBits details, and the pin you wish to set HIGH (default 16)
 
