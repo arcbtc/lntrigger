@@ -13,11 +13,13 @@ https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_m
 - WiFimanager
 - M5Core2
 - ArduinoJson
-https://i.imgur.com/KEg2QsN.png
+<img src="https://i.imgur.com/KEg2QsN.png" width="50%">
 
-### Easy peasy access point
+#### Plug in M5Stack and upload this lntrigger.ino
 
-Just flash the code, press A on the M5Stack, and connect to the WiFi captive portal SSID: ⚡lntrigger⚡ PASS: password1
+### Usage
+
+#### Press A on the M5Stack during "POWERED BY LNBITS" screen, and connect to the WiFi captive portal SSID: "⚡lntrigger⚡" PASS: "password1"
 
 <img width="300" src="https://i.imgur.com/Er9TGmY.png">
 ### <a align="center" href="https://github.com/arcbtc/M5Stack121">Old version</a>
