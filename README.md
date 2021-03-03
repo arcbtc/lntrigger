@@ -33,6 +33,7 @@ Enter your LNBits details, and the pin you wish to set HIGH (default 16)
 ### Usage
 Pay an invoice and the selected pin goes HIGH for selected amount of time, plug in a relay to turn anything on 💪
 
-### Notes
+
+<img align="center" src="https://i.imgur.com/I8T5QVe.gif" width="50%">
+
 ### <a align="center" href="https://github.com/arcbtc/M5Stack121">Old version</a>
-<img src="https://i.imgur.com/I8T5QVe.gif" width="50%">
