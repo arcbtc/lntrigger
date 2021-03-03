@@ -47,7 +47,6 @@ void setup() {
   M5.Lcd.drawBitmap(0, 0, 320, 240, (uint8_t *)logo_map);
   delay(3000);
   lnbits_screen();
-  delay(2000);
 
 // START PORTAL 
 
