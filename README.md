@@ -26,7 +26,7 @@ Upload code!
 
 Press A on the M5Stack during "POWERED BY LNBITS" screen, and connect to the WiFi captive portal SSID: "⚡lntrigger⚡" PASS: "password1"
 
-<img width="300" src="https://i.imgur.com/Er9TGmY.png" width="50%">
+<img width="300" src="https://i.imgur.com/Er9TGmY.png" width="30%">
 
 Enter your LNBits details, and the pin you wish to set HIGH (default 16)
 
@@ -36,4 +36,4 @@ Pay an invoice and the selected pin goes HIGH for selected amount of time, plug 
 
 <img align="center" src="https://i.imgur.com/I8T5QVe.gif" width="50%">
 
-### <a align="center" href="https://github.com/arcbtc/M5Stack121">Old version</a>
+### <a href="https://github.com/arcbtc/M5Stack121">Old version</a>
