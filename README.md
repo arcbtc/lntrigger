@@ -3,6 +3,10 @@
 
 ## A simple PoS unit for retrofitting any device to accept bitcoin over lightning network ⚡
 
+<p align="center">
+<img src="https://i.ibb.co/BVqw7qC/trigger-2.gif">
+  </p>
+
 ### Installation
 
 Install Arduino IDE: 
