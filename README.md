@@ -5,9 +5,9 @@
 
 ### Installation
 
-* Install Arduino IDE https://www.arduino.cc/en/software
-* Install ESP32 boards https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_manager.md
-* Install libraries:
+#### Install Arduino IDE https://www.arduino.cc/en/software
+#### Install ESP32 boards https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_manager.md
+#### Install libraries:
 - WiFimanager
 - M5Core2
 - ArduinoJson
