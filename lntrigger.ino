@@ -44,7 +44,10 @@ void setup() {
   Serial.begin(115200);
   
   M5.begin();
-  M5.Lcd.drawBitmap(0, 0, 320, 240, (uint8_t *)lnbits_map);
+  M5.Lcd.drawBitmap(0, 0, 320, 240, (uint8_t *)logo_map);
+  delay(3000);
+  lnbits_screen();
+  delay(2000);
 
 // START PORTAL 
 
@@ -56,7 +59,12 @@ void setup() {
 void loop() {
   pinMode (atoi(high_pin), OUTPUT);
   digitalWrite(atoi(high_pin), LOW);
+  if(String(invoice_key) == ""){
+    error_screen();
+  }
+  Serial.println(String(invoice_key));
   getinvoice();
+
   if(down){
   error_screen();
   getinvoice();
@@ -93,6 +101,15 @@ void processing_screen()
   M5.Lcd.setTextSize(4);
   M5.Lcd.setTextColor(TFT_WHITE);
   M5.Lcd.println("PROCESSING");
+}
+
+void lnbits_screen()
+{ 
+  M5.Lcd.fillScreen(WHITE);
+  M5.Lcd.setCursor(10, 90);
+  M5.Lcd.setTextSize(3);
+  M5.Lcd.setTextColor(TFT_BLACK);
+  M5.Lcd.println("POWERED BY LNBITS");
 }
 
 void portal_screen()
@@ -256,9 +273,9 @@ void portal(){
     strcpy(lnbits_server, json["lnbits_server"]);
     strcpy(lnbits_description, json["lnbits_description"]);
     strcpy(invoice_key, json["invoice_key"]);
-    strcpy(invoice_key, json["lnbits_amount"]);
-    strcpy(invoice_key, json["high_pin"]);
-    strcpy(invoice_key, json["time_pin"]);
+    strcpy(lnbits_amount, json["lnbits_amount"]);
+    strcpy(high_pin, json["high_pin"]);
+    strcpy(time_pin, json["time_pin"]);
   }
 
 //ADD PARAMS TO WIFIMANAGER
@@ -278,7 +295,7 @@ void portal(){
   wm.addParameter(&custom_time_pin);
 
 //IF RESET WAS TRIGGERED, RUN PORTAL AND WRITE FILES
-  if (!wm.autoConnect("⚡121⚡", "password1")) {
+  if (!wm.autoConnect("⚡lntrigger⚡", "password1")) {
     Serial.println("failed to connect and hit timeout");
     delay(3000);
     ESP.restart();
