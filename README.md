@@ -6,16 +6,21 @@
 ### Installation
 
 Install Arduino IDE: 
+
 https://www.arduino.cc/en/software
+
 Install ESP32 boards: 
+
 https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_manager.md
+
 Install libraries:
 - WiFimanager
 - M5Core2
 - ArduinoJson
+- 
 <img src="https://i.imgur.com/KEg2QsN.png" width="50%">
 
-Plug in M5Stack and upload this lntrigger.ino
+Upload code!
 
 ### Setting up
 
@@ -25,7 +30,7 @@ Press A on the M5Stack during "POWERED BY LNBITS" screen, and connect to the WiF
 
 Enter your LNBits details, and the pin you wish to set HIGH (default 16)
 
-### Usag
+### Usage
 Pay an invoice and the selected pin goes HIGH for selected amount of time, plug in a relay to turn anything on 💪
 
 ### Notes
