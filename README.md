@@ -3,6 +3,16 @@
 
 ## A simple PoS unit for retrofitting any device to accept bitcoin over lightning network ⚡
 
+### Installation
+
+* Install Arduino IDE https://www.arduino.cc/en/software
+* Install ESP32 boards https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_manager.md
+* Install libraries:
+- WiFimanager
+- M5Core2
+- ArduinoJson
+https://i.imgur.com/KEg2QsN.png
+
 ### Easy peasy access point
 
 Just flash the code, press A on the M5Stack, and connect to the WiFi captive portal SSID: ⚡lntrigger⚡ PASS: password1
