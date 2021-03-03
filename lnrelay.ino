@@ -23,8 +23,8 @@ char lnbits_server[40] = "lnbits.com";
 char invoice_key[500] = "";
 char lnbits_description[100] = "";
 char lnbits_amount[500] = "1000";
-char high_pin[5] = "25";
-char time_pin[5] = "500";
+char high_pin[5] = "16";
+char time_pin[20] = "3000";
 char static_ip[16] = "10.0.1.56";
 char static_gw[16] = "10.0.1.1";
 char static_sn[16] = "255.255.255.0";
@@ -41,8 +41,6 @@ String spiffing;
 /////////////////////SETUP////////////////////////
 
 void setup() {
-  pinMode (atoi(high_pin), OUTPUT);
-  digitalWrite(atoi(high_pin), LOW); 
   Serial.begin(115200);
   
   M5.begin();
@@ -56,6 +54,8 @@ void setup() {
 ///////////////////MAIN LOOP//////////////////////
 
 void loop() {
+  pinMode (atoi(high_pin), OUTPUT);
+  digitalWrite(atoi(high_pin), LOW);
   getinvoice();
   if(down){
   error_screen();
@@ -68,6 +68,12 @@ void loop() {
   }
   while(paid == false && payReq != ""){
     checkinvoice();
+    if(paid){
+      complete_screen();
+      digitalWrite(atoi(high_pin), HIGH);
+      delay(atoi(time_pin));
+      digitalWrite(atoi(high_pin), LOW); 
+    }
     delay(3000);
   }
   payReq = "";
@@ -89,10 +95,28 @@ void processing_screen()
   M5.Lcd.println("PROCESSING");
 }
 
+void portal_screen()
+{ 
+  M5.Lcd.fillScreen(BLACK);
+  M5.Lcd.setCursor(30, 80);
+  M5.Lcd.setTextSize(3);
+  M5.Lcd.setTextColor(TFT_WHITE);
+  M5.Lcd.println("PORTAL LAUNCHED");
+}
+
+void complete_screen()
+{ 
+  M5.Lcd.fillScreen(BLACK);
+  M5.Lcd.setCursor(60, 80);
+  M5.Lcd.setTextSize(4);
+  M5.Lcd.setTextColor(TFT_WHITE);
+  M5.Lcd.println("COMPLETE");
+}
+
 void error_screen()
 { 
   M5.Lcd.fillScreen(BLACK);
-  M5.Lcd.setCursor(50, 80);
+  M5.Lcd.setCursor(70, 80);
   M5.Lcd.setTextSize(4);
   M5.Lcd.setTextColor(TFT_WHITE);
   M5.Lcd.println("ERROR");
@@ -210,13 +234,12 @@ void portal(){
 //CHECK IF RESET IS TRIGGERED/WIPE DATA
   for (int i = 0; i <= 100; i++) {
     if (M5.BtnA.wasPressed()){
-    processing_screen();
+    portal_screen();
     delay(1000);
     File file = SPIFFS.open("/config.txt", FILE_WRITE);
     file.print("placeholder");
     wm.resetSettings();
     i = 100;
-    processing_screen();
     }
     delay(50);
     M5.update();
@@ -246,7 +269,7 @@ void portal(){
   WiFiManagerParameter custom_invoice_key("invoice", "LNbits invoice key", invoice_key, 500);
   WiFiManagerParameter custom_lnbits_amount("amount", "Amount to charge (sats)", lnbits_amount, 10);
   WiFiManagerParameter custom_high_pin("high", "Pin to turn on", high_pin, 5);
-  WiFiManagerParameter custom_time_pin("time", "Time for pin to turn on for (milisecs)", time_pin, 10);
+  WiFiManagerParameter custom_time_pin("time", "Time for pin to turn on for (milisecs)", time_pin, 20);
   wm.addParameter(&custom_lnbits_server);
   wm.addParameter(&custom_lnbits_description);
   wm.addParameter(&custom_invoice_key);
@@ -295,6 +318,7 @@ void portal(){
 }
 
 void saveConfigCallback () {
+  processing_screen();
   Serial.println("Should save config");
   shouldSaveConfig = true;
 }
