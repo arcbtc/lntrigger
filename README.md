@@ -17,7 +17,7 @@ Install libraries:
 - WiFimanager
 - M5Core2
 - ArduinoJson
-- 
+
 <img src="https://i.imgur.com/KEg2QsN.png" width="50%">
 
 Upload code!
