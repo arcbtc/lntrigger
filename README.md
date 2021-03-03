@@ -1,5 +1,5 @@
 
-<img width="300" src="https://i.imgur.com/wVll1tP.png">
+<img align="center" src="https://i.imgur.com/wVll1tP.png">
 
 A simple PoS unit for retrofitting any device to accept bitcoin over lightning network.
 <img src="https://i.imgur.com/I8T5QVe.gif" width="100%">
