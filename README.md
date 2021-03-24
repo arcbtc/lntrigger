@@ -7,7 +7,6 @@
 <img src="https://i.ibb.co/YD9fFLZ/trigger2.gif">
   <img src="https://i.ibb.co/R002brg/trigger1.gif">
   </p>
-<img src="https://i.imgur.com/I8T5QVe.gif" width="100%">
 
 ### Installation
 
