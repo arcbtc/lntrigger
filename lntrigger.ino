@@ -41,8 +41,6 @@ String spiffing;
 /////////////////////SETUP////////////////////////
 
 void setup() {
-  Serial.begin(115200);
-  
   M5.begin();
   M5.Lcd.drawBitmap(0, 0, 320, 240, (uint8_t *)logo_map);
   delay(3000);
@@ -149,6 +147,7 @@ void qrdisplay_screen()
 
 void getinvoice() {
   WiFiClientSecure client;
+  client.setInsecure();
   const char* lnbitsserver = lnbits_server;
   const char* invoicekey = invoice_key;
   const char* lnbitsamount = lnbits_amount;
@@ -197,13 +196,10 @@ void getinvoice() {
 
 
 void checkinvoice(){
-
   WiFiClientSecure client;
+  client.setInsecure();
   const char* lnbitsserver = lnbits_server;
   const char* invoicekey = invoice_key;
-
-  Serial.println(lnbits_server);
-  Serial.println(invoice_key);
   if (!client.connect(lnbitsserver, 443)){
     down = true;
     return;   
