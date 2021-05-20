@@ -20,7 +20,7 @@ https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_m
 
 Install libraries:
 - WiFimanager
-- M5Core2
+- M5stack
 - ArduinoJson
 
 <img src="https://i.imgur.com/KEg2QsN.png" width="50%">
