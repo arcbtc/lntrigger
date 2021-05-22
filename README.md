@@ -1,5 +1,5 @@
 
-<img align="center" src="https://i.imgur.com/bewZkZv.png">
+<h1>LN Trigger, bitcoin lightning powered relay ⚡</h1>
 
 ## A simple PoS unit for retrofitting any device to accept bitcoin over lightning network ⚡
 
