@@ -9,10 +9,6 @@
 #include <WiFiClientSecure.h>
 #include "SPIFFS.h"
 
-/////////////////LOAD SPLASH///////////////////
-
-#include "image.c"
-
 /////////////////SOME DEFINES///////////////////
 
 #define LED_PIN 25
@@ -42,7 +38,7 @@ String spiffing;
 
 void setup() {
   M5.begin();
-  M5.Lcd.drawBitmap(0, 0, 320, 240, (uint8_t *)logo_map);
+  logo_screen();
   delay(3000);
   lnbits_screen();
 
@@ -89,6 +85,15 @@ void loop() {
 
 
 //////////////////DISPLAY///////////////////
+
+void logo_screen()
+{ 
+  M5.Lcd.fillScreen(BLACK);
+  M5.Lcd.setCursor(45, 80);
+  M5.Lcd.setTextSize(4);
+  M5.Lcd.setTextColor(TFT_PURPLE);
+  M5.Lcd.println("LNbits Trigger");
+}
 
 
 void processing_screen()
