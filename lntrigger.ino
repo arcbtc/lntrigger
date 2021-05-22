@@ -88,11 +88,11 @@ void loop() {
 
 void logo_screen()
 { 
-  M5.Lcd.fillScreen(BLACK);
-  M5.Lcd.setCursor(45, 80);
+  M5.Lcd.fillScreen(WHITE);
+  M5.Lcd.setCursor(0, 80);
   M5.Lcd.setTextSize(4);
   M5.Lcd.setTextColor(TFT_PURPLE);
-  M5.Lcd.println("LNbits Trigger");
+  M5.Lcd.println("LNbitsTrigger");
 }
 
 
