@@ -3,6 +3,8 @@
 
 ## A simple PoS unit for retrofitting any device to accept bitcoin over lightning network ⚡
 
+> <i>Join our <a href="https://t.me/makerbits">telegram support/chat</a>.</i>
+
 <p align="center">
 <img src="https://i.ibb.co/YD9fFLZ/trigger2.gif">
   <img src="https://i.ibb.co/R002brg/trigger1.gif">
