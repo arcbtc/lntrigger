@@ -214,7 +214,6 @@ void checkinvoice(){
   client.print(String("GET ") + url + dataId +" HTTP/1.1\r\n" +
                 "Host: " + lnbitsserver + "\r\n" +
                 "User-Agent: ESP32\r\n" +
-                "X-Api-Key:"+ invoicekey +"\r\n" +
                 "Content-Type: application/json\r\n" +
                 "Connection: close\r\n\r\n");
    while (client.connected()) {
